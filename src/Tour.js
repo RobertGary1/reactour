@@ -338,7 +338,7 @@ class Tour extends Component {
           // the next step is somewhere in the future list of steps
           this.attemptExecution(steps[startingStep].postAction, startingNode)
 
-          steps.slice(startingStep, nextStep).forEach((interimStep) => {
+          steps.slice(startingStep, nextStep + 1).forEach((interimStep) => {
             const node = document.querySelector(interimStep.selector) || undefined
 
             this.attemptExecution(interimStep.preAction, node)
@@ -350,7 +350,7 @@ class Tour extends Component {
           // the next step is somewhere in the past list of steps
           this.attemptExecution(startingStep.rewindAction, startingNode)
 
-          steps.slice(nextStep, startingStep).reverse().forEach((interimStep) => {
+          steps.slice(nextStep, startingStep + 1).reverse().forEach((interimStep) => {
             const node = document.querySelector(interimStep.selector) || undefined
             this.attemptExecution(interimStep.rewindAction, node)
           })
